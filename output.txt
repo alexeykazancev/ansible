@@ -1,52 +1,203 @@
-alexey@alexey-desktop-22:~/otus/ansible$ ansible-playbook -vvvv  playbooks/install.yml
-ansible-playbook 2.9.6
-  config file = /home/alexey/otus/ansible/ansible.cfg
-  configured module search path = ['/home/alexey/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
-  ansible python module location = /usr/lib/python3/dist-packages/ansible
-  executable location = /usr/bin/ansible-playbook
-  python version = 3.8.10 (default, Nov 26 2021, 20:14:08) [GCC 9.3.0]
-Using /home/alexey/otus/ansible/ansible.cfg as config file
-setting up inventory plugins
-host_list declined parsing /home/alexey/otus/ansible/environments/prod/inventory as it did not pass its verify_file() method
-script declined parsing /home/alexey/otus/ansible/environments/prod/inventory as it did not pass its verify_file() method
-auto declined parsing /home/alexey/otus/ansible/environments/prod/inventory as it did not pass its verify_file() method
-Parsed /home/alexey/otus/ansible/environments/prod/inventory inventory source with ini plugin
-Loading callback plugin default of type stdout, v2.0 from /usr/lib/python3/dist-packages/ansible/plugins/callback/default.py
-
-PLAYBOOK: install.yml ************************************************************************************************************************************************************************************************************************
-Positional arguments: playbooks/install.yml
-verbosity: 4
-private_key_file: /home/alexey/.ssh/id_rsa.pub
-remote_user: ubuntu
-connection: smart
-timeout: 10
-become_method: sudo
-tags: ('all',)
-inventory: ('/home/alexey/otus/ansible/environments/prod/inventory',)
-forks: 5
-1 plays in playbooks/install.yml
+alexey@alexey-desktop-22:~/otus/ansible$ ansible-playbook playbooks/install.yml
 
 PLAY [wp_app] ********************************************************************************************************************************************************************************************************************************
 
 TASK [Gathering Facts] ***********************************************************************************************************************************************************************************************************************
-task path: /home/alexey/otus/ansible/playbooks/install.yml:1
-<193.32.219.45> ESTABLISH SSH CONNECTION FOR USER: ubuntu
-<193.32.219.45> SSH: EXEC ssh -vvv -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o 'IdentityFile="/home/alexey/.ssh/id_rsa.pub"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="ubuntu"' -o ConnectTimeout=10 -o ControlPath=/home/alexey/.ansible/cp/7ed3ccba01 193.32.219.45 '/bin/sh -c '"'"'echo ~ubuntu && sleep 0'"'"''
-<130.193.40.172> ESTABLISH SSH CONNECTION FOR USER: ubuntu
-<130.193.40.172> SSH: EXEC ssh -vvv -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o 'IdentityFile="/home/alexey/.ssh/id_rsa.pub"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="ubuntu"' -o ConnectTimeout=10 -o ControlPath=/home/alexey/.ansible/cp/12423d3629 130.193.40.172 '/bin/sh -c '"'"'echo ~ubuntu && sleep 0'"'"''
-<130.193.40.172> (255, b'', b'OpenSSH_8.2p1 Ubuntu-4ubuntu0.4, OpenSSL 1.1.1f  31 Mar 2020\r\ndebug1: Reading configuration data /etc/ssh/ssh_config\r\ndebug1: /etc/ssh/ssh_config line 19: include /etc/ssh/ssh_config.d/*.conf matched no files\r\ndebug1: /etc/ssh/ssh_config line 21: Applying options for *\r\ndebug2: resolve_canonicalize: hostname 130.193.40.172 is address\r\ndebug1: auto-mux: Trying existing master\r\ndebug1: Control socket "/home/alexey/.ansible/cp/12423d3629" does not exist\r\ndebug2: ssh_connect_direct\r\ndebug1: Connecting to 130.193.40.172 [130.193.40.172] port 22.\r\ndebug2: fd 3 setting O_NONBLOCK\r\ndebug1: fd 3 clearing O_NONBLOCK\r\ndebug1: Connection established.\r\ndebug3: timeout: 9976 ms remain after connect\r\ndebug1: identity file /home/alexey/.ssh/id_rsa.pub type 0\r\ndebug1: identity file /home/alexey/.ssh/id_rsa.pub-cert type -1\r\ndebug1: Local version string SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.4\r\ndebug1: Remote protocol version 2.0, remote software version OpenSSH_7.6p1 Ubuntu-4ubuntu0.3\r\ndebug1: match: OpenSSH_7.6p1 Ubuntu-4ubuntu0.3 pat OpenSSH_7.0*,OpenSSH_7.1*,OpenSSH_7.2*,OpenSSH_7.3*,OpenSSH_7.4*,OpenSSH_7.5*,OpenSSH_7.6*,OpenSSH_7.7* compat 0x04000002\r\ndebug2: fd 3 setting O_NONBLOCK\r\ndebug1: Authenticating to 130.193.40.172:22 as \'ubuntu\'\r\ndebug3: send packet: type 20\r\ndebug1: SSH2_MSG_KEXINIT sent\r\ndebug3: receive packet: type 20\r\ndebug1: SSH2_MSG_KEXINIT received\r\ndebug2: local client KEXINIT proposal\r\ndebug2: KEX algorithms: curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-c\r\ndebug2: host key algorithms: ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,sk-ecdsa-sha2-nistp256-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,ssh-ed25519,sk-ssh-ed25519@openssh.com,rsa-sha2-512,rsa-sha2-256,ssh-rsa\r\ndebug2: ciphers ctos: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\r\ndebug2: ciphers stoc: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\r\ndebug2: MACs ctos: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: MACs stoc: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: compression ctos: zlib@openssh.com,zlib,none\r\ndebug2: compression stoc: zlib@openssh.com,zlib,none\r\ndebug2: languages ctos: \r\ndebug2: languages stoc: \r\ndebug2: first_kex_follows 0 \r\ndebug2: reserved 0 \r\ndebug2: peer server KEXINIT proposal\r\ndebug2: KEX algorithms: curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,diffie-hellman-group14-sha1\r\ndebug2: host key algorithms: ssh-rsa,rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519\r\ndebug2: ciphers ctos: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\r\ndebug2: ciphers stoc: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\r\ndebug2: MACs ctos: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: MACs stoc: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: compression ctos: none,zlib@openssh.com\r\ndebug2: compression stoc: none,zlib@openssh.com\r\ndebug2: languages ctos: \r\ndebug2: languages stoc: \r\ndebug2: first_kex_follows 0 \r\ndebug2: reserved 0 \r\ndebug1: kex: algorithm: curve25519-sha256\r\ndebug1: kex: host key algorithm: ecdsa-sha2-nistp256\r\ndebug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: zlib@openssh.com\r\ndebug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: zlib@openssh.com\r\ndebug3: send packet: type 30\r\ndebug1: expecting SSH2_MSG_KEX_ECDH_REPLY\r\ndebug3: receive packet: type 31\r\ndebug1: Server host key: ecdsa-sha2-nistp256 SHA256:2aaN31L9BOZXtJVH+wGee7IaYSHAU/ePNeILmK1Jyis\r\nFailed to add the host to the list of known hosts (/home/alexey/.ssh/known_hosts).\r\ndebug3: send packet: type 21\r\ndebug2: set_newkeys: mode 1\r\ndebug1: rekey out after 134217728 blocks\r\ndebug1: SSH2_MSG_NEWKEYS sent\r\ndebug1: expecting SSH2_MSG_NEWKEYS\r\ndebug3: receive packet: type 21\r\ndebug1: SSH2_MSG_NEWKEYS received\r\ndebug2: set_newkeys: mode 0\r\ndebug1: rekey in after 134217728 blocks\r\ndebug1: Will attempt key: /home/alexey/.ssh/id_rsa.pub RSA SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU explicit\r\ndebug2: pubkey_prepare: done\r\ndebug3: send packet: type 5\r\ndebug3: receive packet: type 7\r\ndebug1: SSH2_MSG_EXT_INFO received\r\ndebug1: kex_input_ext_info: server-sig-algs=<ssh-ed25519,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521>\r\ndebug3: receive packet: type 6\r\ndebug2: service_accept: ssh-userauth\r\ndebug1: SSH2_MSG_SERVICE_ACCEPT received\r\ndebug3: send packet: type 50\r\ndebug3: receive packet: type 51\r\ndebug1: Authentications that can continue: publickey,password\r\ndebug3: start over, passed a different list publickey,password\r\ndebug3: preferred gssapi-with-mic,gssapi-keyex,hostbased,publickey\r\ndebug3: authmethod_lookup publickey\r\ndebug3: remaining preferred: ,gssapi-keyex,hostbased,publickey\r\ndebug3: authmethod_is_enabled publickey\r\ndebug1: Next authentication method: publickey\r\ndebug1: Offering public key: /home/alexey/.ssh/id_rsa.pub RSA SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU explicit\r\ndebug3: send packet: type 50\r\ndebug2: we sent a publickey packet, wait for reply\r\ndebug3: receive packet: type 60\r\ndebug1: Server accepts key: /home/alexey/.ssh/id_rsa.pub RSA SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU explicit\r\ndebug3: sign_and_send_pubkey: RSA SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU\r\ndebug3: sign_and_send_pubkey: signing using rsa-sha2-512 SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU\r\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\r\n@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @\r\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\r\nPermissions 0644 for \'/home/alexey/.ssh/id_rsa.pub\' are too open.\r\nIt is required that your private key files are NOT accessible by others.\r\nThis private key will be ignored.\r\nLoad key "/home/alexey/.ssh/id_rsa.pub": bad permissions\r\ndebug2: we did not send a packet, disable method\r\ndebug1: No more authentication methods to try.\r\nubuntu@130.193.40.172: Permission denied (publickey,password).\r\n')
-<193.32.219.45> (255, b'', b'OpenSSH_8.2p1 Ubuntu-4ubuntu0.4, OpenSSL 1.1.1f  31 Mar 2020\r\ndebug1: Reading configuration data /etc/ssh/ssh_config\r\ndebug1: /etc/ssh/ssh_config line 19: include /etc/ssh/ssh_config.d/*.conf matched no files\r\ndebug1: /etc/ssh/ssh_config line 21: Applying options for *\r\ndebug2: resolve_canonicalize: hostname 193.32.219.45 is address\r\ndebug1: auto-mux: Trying existing master\r\ndebug1: Control socket "/home/alexey/.ansible/cp/7ed3ccba01" does not exist\r\ndebug2: ssh_connect_direct\r\ndebug1: Connecting to 193.32.219.45 [193.32.219.45] port 22.\r\ndebug2: fd 3 setting O_NONBLOCK\r\ndebug1: fd 3 clearing O_NONBLOCK\r\ndebug1: Connection established.\r\ndebug3: timeout: 9975 ms remain after connect\r\ndebug1: identity file /home/alexey/.ssh/id_rsa.pub type 0\r\ndebug1: identity file /home/alexey/.ssh/id_rsa.pub-cert type -1\r\ndebug1: Local version string SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.4\r\ndebug1: Remote protocol version 2.0, remote software version OpenSSH_7.6p1 Ubuntu-4ubuntu0.3\r\ndebug1: match: OpenSSH_7.6p1 Ubuntu-4ubuntu0.3 pat OpenSSH_7.0*,OpenSSH_7.1*,OpenSSH_7.2*,OpenSSH_7.3*,OpenSSH_7.4*,OpenSSH_7.5*,OpenSSH_7.6*,OpenSSH_7.7* compat 0x04000002\r\ndebug2: fd 3 setting O_NONBLOCK\r\ndebug1: Authenticating to 193.32.219.45:22 as \'ubuntu\'\r\ndebug3: send packet: type 20\r\ndebug1: SSH2_MSG_KEXINIT sent\r\ndebug3: receive packet: type 20\r\ndebug1: SSH2_MSG_KEXINIT received\r\ndebug2: local client KEXINIT proposal\r\ndebug2: KEX algorithms: curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-c\r\ndebug2: host key algorithms: ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,sk-ecdsa-sha2-nistp256-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,ssh-ed25519,sk-ssh-ed25519@openssh.com,rsa-sha2-512,rsa-sha2-256,ssh-rsa\r\ndebug2: ciphers ctos: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\r\ndebug2: ciphers stoc: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\r\ndebug2: MACs ctos: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: MACs stoc: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: compression ctos: zlib@openssh.com,zlib,none\r\ndebug2: compression stoc: zlib@openssh.com,zlib,none\r\ndebug2: languages ctos: \r\ndebug2: languages stoc: \r\ndebug2: first_kex_follows 0 \r\ndebug2: reserved 0 \r\ndebug2: peer server KEXINIT proposal\r\ndebug2: KEX algorithms: curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,diffie-hellman-group14-sha1\r\ndebug2: host key algorithms: ssh-rsa,rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519\r\ndebug2: ciphers ctos: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\r\ndebug2: ciphers stoc: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\r\ndebug2: MACs ctos: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: MACs stoc: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: compression ctos: none,zlib@openssh.com\r\ndebug2: compression stoc: none,zlib@openssh.com\r\ndebug2: languages ctos: \r\ndebug2: languages stoc: \r\ndebug2: first_kex_follows 0 \r\ndebug2: reserved 0 \r\ndebug1: kex: algorithm: curve25519-sha256\r\ndebug1: kex: host key algorithm: ecdsa-sha2-nistp256\r\ndebug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: zlib@openssh.com\r\ndebug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: zlib@openssh.com\r\ndebug3: send packet: type 30\r\ndebug1: expecting SSH2_MSG_KEX_ECDH_REPLY\r\ndebug3: receive packet: type 31\r\ndebug1: Server host key: ecdsa-sha2-nistp256 SHA256:b56BT9JUgtSJSpYDaJaSLB3f3UrBpiKXcTPEDBIfu+E\r\nFailed to add the host to the list of known hosts (/home/alexey/.ssh/known_hosts).\r\ndebug3: send packet: type 21\r\ndebug2: set_newkeys: mode 1\r\ndebug1: rekey out after 134217728 blocks\r\ndebug1: SSH2_MSG_NEWKEYS sent\r\ndebug1: expecting SSH2_MSG_NEWKEYS\r\ndebug3: receive packet: type 21\r\ndebug1: SSH2_MSG_NEWKEYS received\r\ndebug2: set_newkeys: mode 0\r\ndebug1: rekey in after 134217728 blocks\r\ndebug1: Will attempt key: /home/alexey/.ssh/id_rsa.pub RSA SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU explicit\r\ndebug2: pubkey_prepare: done\r\ndebug3: send packet: type 5\r\ndebug3: receive packet: type 7\r\ndebug1: SSH2_MSG_EXT_INFO received\r\ndebug1: kex_input_ext_info: server-sig-algs=<ssh-ed25519,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521>\r\ndebug3: receive packet: type 6\r\ndebug2: service_accept: ssh-userauth\r\ndebug1: SSH2_MSG_SERVICE_ACCEPT received\r\ndebug3: send packet: type 50\r\ndebug3: receive packet: type 51\r\ndebug1: Authentications that can continue: publickey,password\r\ndebug3: start over, passed a different list publickey,password\r\ndebug3: preferred gssapi-with-mic,gssapi-keyex,hostbased,publickey\r\ndebug3: authmethod_lookup publickey\r\ndebug3: remaining preferred: ,gssapi-keyex,hostbased,publickey\r\ndebug3: authmethod_is_enabled publickey\r\ndebug1: Next authentication method: publickey\r\ndebug1: Offering public key: /home/alexey/.ssh/id_rsa.pub RSA SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU explicit\r\ndebug3: send packet: type 50\r\ndebug2: we sent a publickey packet, wait for reply\r\ndebug3: receive packet: type 60\r\ndebug1: Server accepts key: /home/alexey/.ssh/id_rsa.pub RSA SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU explicit\r\ndebug3: sign_and_send_pubkey: RSA SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU\r\ndebug3: sign_and_send_pubkey: signing using rsa-sha2-512 SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU\r\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\r\n@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @\r\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\r\nPermissions 0644 for \'/home/alexey/.ssh/id_rsa.pub\' are too open.\r\nIt is required that your private key files are NOT accessible by others.\r\nThis private key will be ignored.\r\nLoad key "/home/alexey/.ssh/id_rsa.pub": bad permissions\r\ndebug2: we did not send a packet, disable method\r\ndebug1: No more authentication methods to try.\r\nubuntu@193.32.219.45: Permission denied (publickey,password).\r\n')
-fatal: [app2]: UNREACHABLE! => {
-    "changed": false,
-    "msg": "Failed to connect to the host via ssh: OpenSSH_8.2p1 Ubuntu-4ubuntu0.4, OpenSSL 1.1.1f  31 Mar 2020\r\ndebug1: Reading configuration data /etc/ssh/ssh_config\r\ndebug1: /etc/ssh/ssh_config line 19: include /etc/ssh/ssh_config.d/*.conf matched no files\r\ndebug1: /etc/ssh/ssh_config line 21: Applying options for *\r\ndebug2: resolve_canonicalize: hostname 130.193.40.172 is address\r\ndebug1: auto-mux: Trying existing master\r\ndebug1: Control socket \"/home/alexey/.ansible/cp/12423d3629\" does not exist\r\ndebug2: ssh_connect_direct\r\ndebug1: Connecting to 130.193.40.172 [130.193.40.172] port 22.\r\ndebug2: fd 3 setting O_NONBLOCK\r\ndebug1: fd 3 clearing O_NONBLOCK\r\ndebug1: Connection established.\r\ndebug3: timeout: 9976 ms remain after connect\r\ndebug1: identity file /home/alexey/.ssh/id_rsa.pub type 0\r\ndebug1: identity file /home/alexey/.ssh/id_rsa.pub-cert type -1\r\ndebug1: Local version string SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.4\r\ndebug1: Remote protocol version 2.0, remote software version OpenSSH_7.6p1 Ubuntu-4ubuntu0.3\r\ndebug1: match: OpenSSH_7.6p1 Ubuntu-4ubuntu0.3 pat OpenSSH_7.0*,OpenSSH_7.1*,OpenSSH_7.2*,OpenSSH_7.3*,OpenSSH_7.4*,OpenSSH_7.5*,OpenSSH_7.6*,OpenSSH_7.7* compat 0x04000002\r\ndebug2: fd 3 setting O_NONBLOCK\r\ndebug1: Authenticating to 130.193.40.172:22 as 'ubuntu'\r\ndebug3: send packet: type 20\r\ndebug1: SSH2_MSG_KEXINIT sent\r\ndebug3: receive packet: type 20\r\ndebug1: SSH2_MSG_KEXINIT received\r\ndebug2: local client KEXINIT proposal\r\ndebug2: KEX algorithms: curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-c\r\ndebug2: host key algorithms: ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,sk-ecdsa-sha2-nistp256-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,ssh-ed25519,sk-ssh-ed25519@openssh.com,rsa-sha2-512,rsa-sha2-256,ssh-rsa\r\ndebug2: ciphers ctos: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\r\ndebug2: ciphers stoc: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\r\ndebug2: MACs ctos: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: MACs stoc: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: compression ctos: zlib@openssh.com,zlib,none\r\ndebug2: compression stoc: zlib@openssh.com,zlib,none\r\ndebug2: languages ctos: \r\ndebug2: languages stoc: \r\ndebug2: first_kex_follows 0 \r\ndebug2: reserved 0 \r\ndebug2: peer server KEXINIT proposal\r\ndebug2: KEX algorithms: curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,diffie-hellman-group14-sha1\r\ndebug2: host key algorithms: ssh-rsa,rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519\r\ndebug2: ciphers ctos: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\r\ndebug2: ciphers stoc: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\r\ndebug2: MACs ctos: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: MACs stoc: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: compression ctos: none,zlib@openssh.com\r\ndebug2: compression stoc: none,zlib@openssh.com\r\ndebug2: languages ctos: \r\ndebug2: languages stoc: \r\ndebug2: first_kex_follows 0 \r\ndebug2: reserved 0 \r\ndebug1: kex: algorithm: curve25519-sha256\r\ndebug1: kex: host key algorithm: ecdsa-sha2-nistp256\r\ndebug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: zlib@openssh.com\r\ndebug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: zlib@openssh.com\r\ndebug3: send packet: type 30\r\ndebug1: expecting SSH2_MSG_KEX_ECDH_REPLY\r\ndebug3: receive packet: type 31\r\ndebug1: Server host key: ecdsa-sha2-nistp256 SHA256:2aaN31L9BOZXtJVH+wGee7IaYSHAU/ePNeILmK1Jyis\r\nFailed to add the host to the list of known hosts (/home/alexey/.ssh/known_hosts).\r\ndebug3: send packet: type 21\r\ndebug2: set_newkeys: mode 1\r\ndebug1: rekey out after 134217728 blocks\r\ndebug1: SSH2_MSG_NEWKEYS sent\r\ndebug1: expecting SSH2_MSG_NEWKEYS\r\ndebug3: receive packet: type 21\r\ndebug1: SSH2_MSG_NEWKEYS received\r\ndebug2: set_newkeys: mode 0\r\ndebug1: rekey in after 134217728 blocks\r\ndebug1: Will attempt key: /home/alexey/.ssh/id_rsa.pub RSA SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU explicit\r\ndebug2: pubkey_prepare: done\r\ndebug3: send packet: type 5\r\ndebug3: receive packet: type 7\r\ndebug1: SSH2_MSG_EXT_INFO received\r\ndebug1: kex_input_ext_info: server-sig-algs=<ssh-ed25519,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521>\r\ndebug3: receive packet: type 6\r\ndebug2: service_accept: ssh-userauth\r\ndebug1: SSH2_MSG_SERVICE_ACCEPT received\r\ndebug3: send packet: type 50\r\ndebug3: receive packet: type 51\r\ndebug1: Authentications that can continue: publickey,password\r\ndebug3: start over, passed a different list publickey,password\r\ndebug3: preferred gssapi-with-mic,gssapi-keyex,hostbased,publickey\r\ndebug3: authmethod_lookup publickey\r\ndebug3: remaining preferred: ,gssapi-keyex,hostbased,publickey\r\ndebug3: authmethod_is_enabled publickey\r\ndebug1: Next authentication method: publickey\r\ndebug1: Offering public key: /home/alexey/.ssh/id_rsa.pub RSA SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU explicit\r\ndebug3: send packet: type 50\r\ndebug2: we sent a publickey packet, wait for reply\r\ndebug3: receive packet: type 60\r\ndebug1: Server accepts key: /home/alexey/.ssh/id_rsa.pub RSA SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU explicit\r\ndebug3: sign_and_send_pubkey: RSA SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU\r\ndebug3: sign_and_send_pubkey: signing using rsa-sha2-512 SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU\r\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\r\n@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @\r\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\r\nPermissions 0644 for '/home/alexey/.ssh/id_rsa.pub' are too open.\r\nIt is required that your private key files are NOT accessible by others.\r\nThis private key will be ignored.\r\nLoad key \"/home/alexey/.ssh/id_rsa.pub\": bad permissions\r\ndebug2: we did not send a packet, disable method\r\ndebug1: No more authentication methods to try.\r\nubuntu@130.193.40.172: Permission denied (publickey,password).",
-    "unreachable": true
-}
-fatal: [app]: UNREACHABLE! => {
-    "changed": false,
-    "msg": "Failed to connect to the host via ssh: OpenSSH_8.2p1 Ubuntu-4ubuntu0.4, OpenSSL 1.1.1f  31 Mar 2020\r\ndebug1: Reading configuration data /etc/ssh/ssh_config\r\ndebug1: /etc/ssh/ssh_config line 19: include /etc/ssh/ssh_config.d/*.conf matched no files\r\ndebug1: /etc/ssh/ssh_config line 21: Applying options for *\r\ndebug2: resolve_canonicalize: hostname 193.32.219.45 is address\r\ndebug1: auto-mux: Trying existing master\r\ndebug1: Control socket \"/home/alexey/.ansible/cp/7ed3ccba01\" does not exist\r\ndebug2: ssh_connect_direct\r\ndebug1: Connecting to 193.32.219.45 [193.32.219.45] port 22.\r\ndebug2: fd 3 setting O_NONBLOCK\r\ndebug1: fd 3 clearing O_NONBLOCK\r\ndebug1: Connection established.\r\ndebug3: timeout: 9975 ms remain after connect\r\ndebug1: identity file /home/alexey/.ssh/id_rsa.pub type 0\r\ndebug1: identity file /home/alexey/.ssh/id_rsa.pub-cert type -1\r\ndebug1: Local version string SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.4\r\ndebug1: Remote protocol version 2.0, remote software version OpenSSH_7.6p1 Ubuntu-4ubuntu0.3\r\ndebug1: match: OpenSSH_7.6p1 Ubuntu-4ubuntu0.3 pat OpenSSH_7.0*,OpenSSH_7.1*,OpenSSH_7.2*,OpenSSH_7.3*,OpenSSH_7.4*,OpenSSH_7.5*,OpenSSH_7.6*,OpenSSH_7.7* compat 0x04000002\r\ndebug2: fd 3 setting O_NONBLOCK\r\ndebug1: Authenticating to 193.32.219.45:22 as 'ubuntu'\r\ndebug3: send packet: type 20\r\ndebug1: SSH2_MSG_KEXINIT sent\r\ndebug3: receive packet: type 20\r\ndebug1: SSH2_MSG_KEXINIT received\r\ndebug2: local client KEXINIT proposal\r\ndebug2: KEX algorithms: curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-c\r\ndebug2: host key algorithms: ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,sk-ecdsa-sha2-nistp256-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,ssh-ed25519,sk-ssh-ed25519@openssh.com,rsa-sha2-512,rsa-sha2-256,ssh-rsa\r\ndebug2: ciphers ctos: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\r\ndebug2: ciphers stoc: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\r\ndebug2: MACs ctos: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: MACs stoc: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: compression ctos: zlib@openssh.com,zlib,none\r\ndebug2: compression stoc: zlib@openssh.com,zlib,none\r\ndebug2: languages ctos: \r\ndebug2: languages stoc: \r\ndebug2: first_kex_follows 0 \r\ndebug2: reserved 0 \r\ndebug2: peer server KEXINIT proposal\r\ndebug2: KEX algorithms: curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,diffie-hellman-group14-sha1\r\ndebug2: host key algorithms: ssh-rsa,rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519\r\ndebug2: ciphers ctos: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\r\ndebug2: ciphers stoc: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\r\ndebug2: MACs ctos: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: MACs stoc: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: compression ctos: none,zlib@openssh.com\r\ndebug2: compression stoc: none,zlib@openssh.com\r\ndebug2: languages ctos: \r\ndebug2: languages stoc: \r\ndebug2: first_kex_follows 0 \r\ndebug2: reserved 0 \r\ndebug1: kex: algorithm: curve25519-sha256\r\ndebug1: kex: host key algorithm: ecdsa-sha2-nistp256\r\ndebug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: zlib@openssh.com\r\ndebug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: zlib@openssh.com\r\ndebug3: send packet: type 30\r\ndebug1: expecting SSH2_MSG_KEX_ECDH_REPLY\r\ndebug3: receive packet: type 31\r\ndebug1: Server host key: ecdsa-sha2-nistp256 SHA256:b56BT9JUgtSJSpYDaJaSLB3f3UrBpiKXcTPEDBIfu+E\r\nFailed to add the host to the list of known hosts (/home/alexey/.ssh/known_hosts).\r\ndebug3: send packet: type 21\r\ndebug2: set_newkeys: mode 1\r\ndebug1: rekey out after 134217728 blocks\r\ndebug1: SSH2_MSG_NEWKEYS sent\r\ndebug1: expecting SSH2_MSG_NEWKEYS\r\ndebug3: receive packet: type 21\r\ndebug1: SSH2_MSG_NEWKEYS received\r\ndebug2: set_newkeys: mode 0\r\ndebug1: rekey in after 134217728 blocks\r\ndebug1: Will attempt key: /home/alexey/.ssh/id_rsa.pub RSA SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU explicit\r\ndebug2: pubkey_prepare: done\r\ndebug3: send packet: type 5\r\ndebug3: receive packet: type 7\r\ndebug1: SSH2_MSG_EXT_INFO received\r\ndebug1: kex_input_ext_info: server-sig-algs=<ssh-ed25519,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521>\r\ndebug3: receive packet: type 6\r\ndebug2: service_accept: ssh-userauth\r\ndebug1: SSH2_MSG_SERVICE_ACCEPT received\r\ndebug3: send packet: type 50\r\ndebug3: receive packet: type 51\r\ndebug1: Authentications that can continue: publickey,password\r\ndebug3: start over, passed a different list publickey,password\r\ndebug3: preferred gssapi-with-mic,gssapi-keyex,hostbased,publickey\r\ndebug3: authmethod_lookup publickey\r\ndebug3: remaining preferred: ,gssapi-keyex,hostbased,publickey\r\ndebug3: authmethod_is_enabled publickey\r\ndebug1: Next authentication method: publickey\r\ndebug1: Offering public key: /home/alexey/.ssh/id_rsa.pub RSA SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU explicit\r\ndebug3: send packet: type 50\r\ndebug2: we sent a publickey packet, wait for reply\r\ndebug3: receive packet: type 60\r\ndebug1: Server accepts key: /home/alexey/.ssh/id_rsa.pub RSA SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU explicit\r\ndebug3: sign_and_send_pubkey: RSA SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU\r\ndebug3: sign_and_send_pubkey: signing using rsa-sha2-512 SHA256:sISdLLj+SDj0GJz3w9rbJkcwnO9izF/WEjIWwBzwTmU\r\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\r\n@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @\r\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\r\nPermissions 0644 for '/home/alexey/.ssh/id_rsa.pub' are too open.\r\nIt is required that your private key files are NOT accessible by others.\r\nThis private key will be ignored.\r\nLoad key \"/home/alexey/.ssh/id_rsa.pub\": bad permissions\r\ndebug2: we did not send a packet, disable method\r\ndebug1: No more authentication methods to try.\r\nubuntu@193.32.219.45: Permission denied (publickey,password).",
-    "unreachable": true
-}
+ok: [app]
+ok: [app2]
+
+TASK [Update apt-get repo and cache] *********************************************************************************************************************************************************************************************************
+changed: [app2]
+changed: [app]
+
+TASK [install dependencies] ******************************************************************************************************************************************************************************************************************
+changed: [app2]
+changed: [app]
 
 PLAY RECAP ***********************************************************************************************************************************************************************************************************************************
-app                        : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
-app2                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
+app                        : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+app2                       : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
+----------------------------------------------
+
+alexey@alexey-desktop-22:~/otus/ansible$ ansible-playbook playbooks/install.yml
+
+PLAY [wp_app] ********************************************************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************************************************************************************************
+ok: [app]
+ok: [app2]
+
+TASK [Update apt-get repo and cache] *********************************************************************************************************************************************************************************************************
+ok: [app2]
+ok: [app]
+
+TASK [install dependencies] ******************************************************************************************************************************************************************************************************************
+ok: [app]
+ok: [app2]
+
+TASK [Create the installation directory] *****************************************************************************************************************************************************************************************************
+changed: [app]
+changed: [app2]
+
+TASK [Install WordPress] *********************************************************************************************************************************************************************************************************************
+changed: [app]
+changed: [app2]
+
+PLAY RECAP ***********************************************************************************************************************************************************************************************************************************
+app                        : ok=5    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+app2                       : ok=5    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
+----------------------------------------------
+
+alexey@alexey-desktop-22:~/otus/ansible$ ansible-playbook playbooks/install.yml
+
+PLAY [wp_app] ********************************************************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************************************************************************************************
+ok: [app2]
+ok: [app]
+
+TASK [Update apt-get repo and cache] *********************************************************************************************************************************************************************************************************
+ok: [app2]
+ok: [app]
+
+TASK [install dependencies] ******************************************************************************************************************************************************************************************************************
+ok: [app2]
+ok: [app]
+
+TASK [Create the installation directory] *****************************************************************************************************************************************************************************************************
+ok: [app2]
+ok: [app]
+
+TASK [Install WordPress] *********************************************************************************************************************************************************************************************************************
+ok: [app2]
+ok: [app]
+
+TASK [Copy file with owner and permissions] **************************************************************************************************************************************************************************************************
+changed: [app]
+changed: [app2]
+
+PLAY RECAP ***********************************************************************************************************************************************************************************************************************************
+app                        : ok=6    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+app2                       : ok=6    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
+-----------------------------------
+
+alexey@alexey-desktop-22:~/otus/ansible$ ansible-playbook playbooks/install.yml
+
+PLAY [wp_app] ********************************************************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************************************************************************************************
+ok: [app2]
+ok: [app]
+
+TASK [Update apt-get repo and cache] *********************************************************************************************************************************************************************************************************
+ok: [app2]
+ok: [app]
+
+TASK [install dependencies] ******************************************************************************************************************************************************************************************************************
+ok: [app2]
+ok: [app]
+
+TASK [Create the installation directory] *****************************************************************************************************************************************************************************************************
+ok: [app2]
+ok: [app]
+
+TASK [Install WordPress] *********************************************************************************************************************************************************************************************************************
+ok: [app2]
+ok: [app]
+
+TASK [Copy file with owner and permissions] **************************************************************************************************************************************************************************************************
+ok: [app2]
+ok: [app]
+
+TASK [Enable URL rewriting] ******************************************************************************************************************************************************************************************************************
+changed: [app2]
+changed: [app]
+
+TASK [Enable the site] ***********************************************************************************************************************************************************************************************************************
+changed: [app2]
+changed: [app]
+
+TASK [Disable the default “It Works” site] ***************************************************************************************************************************************************************************************************
+changed: [app2]
+changed: [app]
+
+TASK [Reload service apache2] ****************************************************************************************************************************************************************************************************************
+changed: [app2]
+changed: [app]
+
+PLAY RECAP ***********************************************************************************************************************************************************************************************************************************
+app                        : ok=10   changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+app2                       : ok=10   changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
+
+
+-----------------------------------
+
+
+
+alexey@alexey-desktop-22:~/otus/ansible$ ansible-playbook playbooks/install.yml
+
+PLAY [wp_app] ********************************************************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************************************************************************************************
+ok: [app]
+ok: [app2]
+
+TASK [Update apt-get repo and cache] *********************************************************************************************************************************************************************************************************
+ok: [app]
+ok: [app2]
+
+TASK [install dependencies] ******************************************************************************************************************************************************************************************************************
+ok: [app]
+ok: [app2]
+
+TASK [Create the installation directory] *****************************************************************************************************************************************************************************************************
+ok: [app]
+ok: [app2]
+
+TASK [Install WordPress] *********************************************************************************************************************************************************************************************************************
+ok: [app]
+ok: [app2]
+
+TASK [Copy file with owner and permissions] **************************************************************************************************************************************************************************************************
+ok: [app]
+ok: [app2]
+
+TASK [Enable URL rewriting] ******************************************************************************************************************************************************************************************************************
+ok: [app]
+ok: [app2]
+
+TASK [Enable the site] ***********************************************************************************************************************************************************************************************************************
+changed: [app]
+changed: [app2]
+
+TASK [Disable the default “It Works” site] ***************************************************************************************************************************************************************************************************
+changed: [app]
+changed: [app2]
+
+TASK [Reload service apache2] ****************************************************************************************************************************************************************************************************************
+changed: [app]
+changed: [app2]
+
+TASK [Install mysql cert] ********************************************************************************************************************************************************************************************************************
+changed: [app]
+changed: [app2]
+
+TASK [Update cert index] *********************************************************************************************************************************************************************************************************************
+changed: [app]
+changed: [app2]
+
+TASK [Configure WordPress] *******************************************************************************************************************************************************************************************************************
+changed: [app]
+changed: [app2]
+
+PLAY RECAP ***********************************************************************************************************************************************************************************************************************************
+app                        : ok=13   changed=6    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+app2                       : ok=13   changed=6    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
